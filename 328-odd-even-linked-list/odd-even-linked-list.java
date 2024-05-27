@@ -13,31 +13,18 @@ class Solution {
        if(head==null || head.next==null){
            return head;
        }
-        ListNode temp=head;
-        ArrayList<Integer> l=new ArrayList<>();
-      
-        while(temp!=null && temp.next!=null){
-          l.add(temp.val);
-            temp=temp.next.next;
+        ListNode odd=head;
+        ListNode even=head.next;
+        ListNode evennode=even;
+        while(even!=null && even.next!=null){
+            odd.next=odd.next.next;
+            even.next=even.next.next;
+            odd=odd.next;
+            even=even.next;
+            
         }
-        if(temp!=null){
-            l.add(temp.val);
-        }
-        temp=head.next;
-        while(temp!=null && temp.next!=null){
-            l.add(temp.val);
-            temp=temp.next.next;
-        }
-        if(temp!=null){
-            l.add(temp.val);
-        }
-        int i=0;
-        temp=head;
-        while(temp!=null){
-            temp.val=l.get(i);
-            i++;
-            temp=temp.next;
-        }
+        odd.next=evennode;
         return head;
+        
     }
 }
